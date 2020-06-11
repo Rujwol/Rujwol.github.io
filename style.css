@@ -1,0 +1,42 @@
+#left{
+    float:left; 
+    width:50%; 
+    height:400px; 
+}
+#right{
+    float:right; 
+    width:50%; 
+    height:400px; 
+
+}
+
+body {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSA7xaiqMDObQiHA8C8sp0vgV_fmztNclSeCPOvfnXN9ZfRMB5V&usqp=CAU");
+    background-color: #cccccc;
+    background-position: center;
+   }
+.main
+{
+    text-align: center;
+    color: #fff;
+}
+p
+{
+    text-shadow: -5px -5px 5px whitesmoke,-5px 5px 5px whitesmoke,
+    5px -5px 5px whitesmoke,5px 5px 5px whitesmoke;
+}
+.repolink{
+    background-color: antiquewhite;
+    color: white;
+}
+
+.repolink:hover{
+    background-color: rgb(170, 4, 4);
+}
+
+.f_name{
+    font-family: Didot ;
+    font-style: italic;
+    text-emphasis-color: rgb(21, 86, 172);
+}
+

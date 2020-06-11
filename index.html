@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> My Portfoliio</title>
+    ><link rel="stylesheet" href="style.css">
+  
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <!-- google font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Public+Sans:300,500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
+    />
+    <script
+      type="text/javascript"
+      language="javascript"
+      src="https://code.jquery.com/jquery-3.5.1.js"
+    ></script>
+    <script
+      type="text/javascript"
+      language="javascript"
+      src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"
+    ></script>
+
+    <script>
+        $(document).ready(function () {
+          var baseurl = "https://api.github.com/users/rujwol/repos";
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.open("GET", baseurl, true);
+          xmlhttp.onreadystatechange = function () {
+            var persons = JSON.parse(xmlhttp.responseText);
+            $("#example").DataTable({
+              destroy: true,
+              data: persons,
+              columns: [
+                { data: "id" },
+                { data: "name" },
+                { data: "html_url" },
+                { data: "language" },
+                { data: "created_at" },
+              ],
+            });
+          };
+          xmlhttp.send();
+        });
+      </script>
+    
+</head>
+<!--
+<body id="loading">
+    loading.....
+</body>
+-->
+<body>
+
+    <div class="main" id="maincontainer" >
+        <div id="left">
+            <img src="https://scontent.fktm7-1.fna.fbcdn.net/v/t1.0-9/p960x960/84570304_2979004165483755_6028689398319546368_o.jpg?_nc_cat=105&_nc_sid=85a577&_nc_ohc=NhsUiM12yYYAX9Nao35&_nc_ht=scontent.fktm7-1.fna&_nc_tp=6&oh=6b5ff035e77a608743e5079ed10e3996&oe=5F004ACE"
+            height="250"
+            width="250"
+            //id = "profileimage"
+            >
+            <h2 id="fullname" class="f_name"></h2>
+            <p id="bio"> </p>
+            <p>
+                <i>You guys can find me in: </i> <a id="githublink"> Github</a>
+            </p>
+            <a class="twitter-timeline" data-width="300" data-height="400" data-theme="dark" href="https://twitter.com/rujwol?ref_src=twsrc%5Etfw">Tweets by rujwol</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+
+
+
+        <div id="right">
+            <h2> My projects </h2>
+            <p> Lets talk about some of my project that i have done
+                <br>
+                <h2>The list are : <br></h2>
+                <p> <a id="repolink"> Link to all the repositories in my git hub</a></p>
+            </p>
+            <p class="for_table"  style="background-color:rgb(21, 86, 172);">
+            <table id="example" class="display" style="width: 100%; color: rgb(21, 86, 172);">
+                <thead class="text-center">
+                  <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>URL</th>
+                    <th>Language</th>
+                    <th>Created in Date</th>
+                  </tr>
+                </thead>
+              </table>
+            
+            </p> 
+           
+        </div>
+       
+    </div>
+
+    <script>
+        fetch("https://api.github.com/users/rujwol")
+        .then(response => response.json())
+        .then(function(data) {
+            console.log(data)
+            let repoCount = data['public_repos']
+            let repoinfo = `Number of repo i have are: ${repoCount}`
+            //document.getElementById('profileimage').scr = data['avatar_url']
+            document.getElementById('fullname').textContent = data['name']
+            document.getElementById('bio').textContent = data['bio']
+            document.getElementById('githublink').href = data['html_url']
+            document.getElementById('repolink').href = data['repos_url']
+            document.getElementById('public_repos').textContent = data['public_repos']
+            document.getElementById('maincontainer').hidden = false
+            //document.getElementById('loading').hidden = true
+                             }
+            );
+    </script>
+    
+    
+
+</body>
+</html>
